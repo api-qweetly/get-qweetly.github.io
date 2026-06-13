@@ -72,48 +72,52 @@
             // Normalize string to lowercase and remove any spaces/dashes
             const cleanReason = reason.toLowerCase().replace(/[\s-_]/g, '');
 
-            // Master Map for shortcuts
+            // Master Map for shortcuts matching the exact items in your <li> list
             const reasonMap = {
-                'alcoholntobacco': 'Alcohol & Tobacco',
-                'alcoholandtobacco': 'Alcohol & Tobacco',
+                'nudity': 'Nudity',
+                'profanity': 'Profanity',
+                'feminism': 'Feminism',
+                'againstgenders': 'Against Genders',
                 'violencengore': 'Violence & Gore',
                 'violenceandgore': 'Violence & Gore',
-                'gamblingnbetting': 'Gambling & Betting',
-                'gamblingandbetting': 'Gambling & Betting',
+                'hatespeech': 'Hate Speech',
                 'harassmentncyberbullying': 'Harassment & Cyberbullying',
                 'harassmentandcyberbullying': 'Harassment & Cyberbullying',
+                'illegalactivities': 'Illegal Activities',
+                'terrorismnradicalization': 'Terrorism & Radicalization',
+                'terrorismandradicalization': 'Terrorism & Radicalization',
+                'gamblingnbetting': 'Gambling & Betting',
+                'gamblingandbetting': 'Gambling & Betting',
+                'alcoholntobacco': 'Alcohol & Tobacco',
+                'alcoholandtobacco': 'Alcohol & Tobacco',
                 'weaponsammunitionnexplosives': 'Weapons, Ammunition, & Explosives',
                 'weaponsammunitionandexplosives': 'Weapons, Ammunition, & Explosives',
+                'recreationaldrugs': 'Recreational Drugs',
+                'unapprovedpharmaceuticals': 'Unapproved Pharmaceuticals',
                 'malwarespywarenphishing': 'Malware, Spyware, & Phishing',
                 'malwarespywareandphishing': 'Malware, Spyware, & Phishing',
                 'copyrightntrademarkinfringement': 'Copyright & Trademark Infringement',
                 'copyrightandtrademarkinfringement': 'Copyright & Trademark Infringement',
-                'againstgenders': 'Against Genders',
-                'hatespeech': 'Hate Speech',
-                'illegalactivities': 'Illegal Activities',
-                'terrorismnradicalization': 'Terrorism & Radicalization',
-                'terrorismandradicalization': 'Terrorism & Radicalization',
-                'recreationaldrugs': 'Recreational Drugs',
-                'unapprovedpharmaceuticals': 'Unapproved Pharmaceuticals',
                 'deceptivemisinformation': 'Deceptive Misinformation',
                 'clickbaitnlowqualityspamcontent': 'Clickbait & Low-Quality Spam Content',
                 'clickbaitandlowqualityspamcontent': 'Clickbait & Low-Quality Spam Content'
             };
 
-            let formattedReason;
-
-            if (reasonMap[cleanReason]) {
-                formattedReason = reasonMap[cleanReason];
-            } else {
-                // If it's a regular word, replace dashes/underscores with spaces and capitalize words
-                formattedReason = reason.replace(/[-_]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-            }
-            
-            // Render the specific dynamic layout text
             const heading = document.getElementById('page-heading');
-            heading.textContent = `You've been declined because of ${formattedReason}`;
-            heading.style.color = '#b30000'; 
-            heading.style.fontSize = '2.5rem'; 
+
+            // Strict checking validation loop
+            if (reasonMap[cleanReason]) {
+                const formattedReason = reasonMap[cleanReason];
+                heading.textContent = `You've been declined because of ${formattedReason}`;
+                heading.style.color = '#b30000'; 
+                heading.style.fontSize = '2.5rem'; 
+            } else {
+                // If it is completely missing from your dictionary mapping rules
+                heading.textContent = "Undefined Reason: Please make sure that the reason is correctly typed in or is in the list";
+                heading.style.color = '#721c24'; // Slightly deeper gray/red error tint
+                heading.style.fontSize = '1.8rem'; 
+                heading.style.maxWidth = '800px'; // Prevent long sentences stretching completely wide
+            }
         }
     </script>
 </body>
