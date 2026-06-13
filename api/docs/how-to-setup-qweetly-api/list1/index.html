@@ -5,73 +5,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>List 1 - QweetlyAPI</title>
+    <style>
+        /* Class to center content when a reason is displayed */
+        .centered-layout {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            margin: 0;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <h1 id="page-heading">Full list</h1>
-    
-    <ul>
-        <li>Nudity</li>
-        <li>Profanity</li>
-        <li>Feminism</li>
-        <li>Against genders</li>
-        <li>Violence &amp; Gore</li>
-        <li>Hate Speech</li>
-        <li>Harassment &amp; Cyberbullying</li>
-        <li>Illegal Activities</li>
-        <li>Terrorism &amp; Radicalization</li>
-        <li>Gambling &amp; Betting</li>
-        <li>Alcohol &amp; Tobacco</li>
-        <li>Weapons, Ammunition, &amp; Explosives</li>
-        <li>Recreational Drugs</li>
-        <li>Unapproved Pharmaceuticals</li>
-        <li>Malware, Spyware, &amp; Phishing</li>
-        <li>Copyright &amp; Trademark Infringement</li>
-        <li>Deceptive Misinformation</li>
-        <li>Clickbait &amp; Low-Quality Spam Content</li>
-    </ul>
+    <!-- Wrap everything inside a container to easily change styles and hide elements -->
+    <div id="page-container">
+        <h1 id="page-heading">Full list</h1>
+        
+        <div id="content-to-hide">
+            <ul>
+                <li>Nudity</li>
+                <li>Profanity</li>
+                <li>Feminism</li>
+                <li>Against genders</li>
+                <li>Violence &amp; Gore</li>
+                <li>Hate Speech</li>
+                <li>Harassment &amp; Cyberbullying</li>
+                <li>Illegal Activities</li>
+                <li>Terrorism &amp; Radicalization</li>
+                <li>Gambling &amp; Betting</li>
+                <li>Alcohol &amp; Tobacco</li>
+                <li>Weapons, Ammunition, &amp; Explosives</li>
+                <li>Recreational Drugs</li>
+                <li>Unapproved Pharmaceuticals</li>
+                <li>Malware, Spyware, &amp; Phishing</li>
+                <li>Copyright &amp; Trademark Infringement</li>
+                <li>Deceptive Misinformation</li>
+                <li>Clickbait &amp; Low-Quality Spam Content</li>
+            </ul>
 
-    <div>
-        <h3>What if you do not comply?</h3>
-        <p>Failure to follow these content guidelines will result in:</p>
-        <ul>
-            <li>Immediate revocation of your API access tokens</li>
-            <li>Permanent blacklisting of your domain from QweetlyAPI</li>
-            <li>Termination of your developer account without prior warning</li>
-        </ul>
+            <div>
+                <h3>What if you do not comply?</h3>
+                <p>Failure to follow these content guidelines will result in:</p>
+                <ul>
+                    <li>Immediate revocation of your API access tokens</li>
+                    <li>Permanent blacklisting of your domain from QweetlyAPI</li>
+                    <li>Termination of your developer account without prior warning</li>
+                </ul>
+            </div>
+        </div>
     </div>
 
-    <!-- JavaScript Mapping System -->
+    <!-- JavaScript Mapping & Layout Modification System -->
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         let reason = urlParams.get('reason');
         
         if (reason) {
-            // Normalize string to lowercase and remove any spaces/dashes for uniform checking
+            // Hide the list and warning content completely
+            document.getElementById('content-to-hide').style.display = 'none';
+            
+            // Add centering layout rules to the container
+            document.getElementById('page-container').classList.add('centered-layout');
+
+            // Normalize string to lowercase and remove any spaces/dashes
             const cleanReason = reason.toLowerCase().replace(/[\s-_]/g, '');
 
-            // Master Map for shortcuts containing '&', commas, or custom phrasing
+            // Master Map for shortcuts
             const reasonMap = {
                 'alcoholntobacco': 'Alcohol & Tobacco',
                 'alcoholandtobacco': 'Alcohol & Tobacco',
-                
                 'violencengore': 'Violence & Gore',
                 'violenceandgore': 'Violence & Gore',
-                
                 'gamblingnbetting': 'Gambling & Betting',
                 'gamblingandbetting': 'Gambling & Betting',
-                
                 'harassmentncyberbullying': 'Harassment & Cyberbullying',
                 'harassmentandcyberbullying': 'Harassment & Cyberbullying',
-                
                 'weaponsammunitionnexplosives': 'Weapons, Ammunition, & Explosives',
                 'weaponsammunitionandexplosives': 'Weapons, Ammunition, & Explosives',
-                
                 'malwarespywarenphishing': 'Malware, Spyware, & Phishing',
                 'malwarespywareandphishing': 'Malware, Spyware, & Phishing',
-                
                 'copyrightntrademarkinfringement': 'Copyright & Trademark Infringement',
                 'copyrightandtrademarkinfringement': 'Copyright & Trademark Infringement',
-                
                 'againstgenders': 'Against Genders',
                 'hatespeech': 'Hate Speech',
                 'illegalactivities': 'Illegal Activities',
@@ -86,17 +102,17 @@
 
             let formattedReason;
 
-            // Check if the input matches a map shortcut, otherwise fallback to basic formatting
             if (reasonMap[cleanReason]) {
                 formattedReason = reasonMap[cleanReason];
             } else {
                 formattedReason = reason.replace(/[-_]/g, ' ');
             }
             
-            // Render to the H1 heading element
+            // Render the centered, colored, and capitalized heading reason
             const heading = document.getElementById('page-heading');
             heading.textContent = formattedReason;
             heading.style.color = '#b30000'; 
+            heading.style.fontSize = '3rem'; // Make it large and prominent in the center
             heading.style.textTransform = 'capitalize'; 
         }
     </script>
