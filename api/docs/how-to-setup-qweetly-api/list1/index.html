@@ -6,22 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>List 1 - QweetlyAPI</title>
     <style>
-        /* Class to center content when a reason is displayed */
-        .centered-layout {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 80vh;
-            margin: 0;
-            text-align: center;
-        }
 
      .banner{
 
 background-color: red;
          font-family: verdana;
-         
+         text-align: center;
      }
          
     </style>
@@ -30,104 +20,5 @@ background-color: red;
     <!-- Wrap everything inside a container to easily change styles and hide elements -->
     <div id="page-container">
         <h1 class="banner">This list has been deprecated <a href="moreinfo">Read More -></a></h1>
-        <h1 id="page-heading">Full list</h1>
-        
-        <div id="content-to-hide">
-            <ul>
-                <li>Nudity</li>
-                <li>Profanity</li>
-                <li>Feminism</li>
-                <li>Against genders</li>
-                <li>Violence &amp; Gore</li>
-                <li>Hate Speech</li>
-                <li>Harassment &amp; Cyberbullying</li>
-                <li>Illegal Activities</li>
-                <li>Terrorism &amp; Radicalization</li>
-                <li>Gambling &amp; Betting</li>
-                <li>Alcohol &amp; Tobacco</li>
-                <li>Weapons, Ammunition, &amp; Explosives</li>
-                <li>Recreational Drugs</li>
-                <li>Unapproved Pharmaceuticals</li>
-                <li>Malware, Spyware, &amp; Phishing</li>
-                <li>Copyright &amp; Trademark Infringement</li>
-                <li>Deceptive Misinformation</li>
-                <li>Clickbait &amp; Low-Quality Spam Content</li>
-            </ul>
-
-            <div>
-                <h3>What if you do not comply?</h3>
-                <p>Failure to follow these content guidelines will result in:</p>
-                <ul>
-                    <li>Immediate revocation of your API access tokens</li>
-                    <li>Permanent blacklisting of your domain from QweetlyAPI</li>
-                    <li>Termination of your developer account without prior warning</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <!-- JavaScript Mapping & Layout Modification System -->
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        let reason = urlParams.get('reason');
-        
-        if (reason) {
-            // Hide the list and warning content completely
-            document.getElementById('content-to-hide').style.display = 'none';
-            
-            // Add centering layout rules to the container
-            document.getElementById('page-container').classList.add('centered-layout');
-
-            // Normalize string to lowercase and remove any spaces/dashes
-            const cleanReason = reason.toLowerCase().replace(/[\s-_]/g, '');
-
-            // Master Map for shortcuts matching the exact items in your <li> list
-            const reasonMap = {
-                'nudity': 'Nudity',
-                'profanity': 'Profanity',
-                'feminism': 'Feminism',
-                'againstgenders': 'Against Genders',
-                'violencengore': 'Violence & Gore',
-                'violenceandgore': 'Violence & Gore',
-                'hatespeech': 'Hate Speech',
-                'harassmentncyberbullying': 'Harassment & Cyberbullying',
-                'harassmentandcyberbullying': 'Harassment & Cyberbullying',
-                'illegalactivities': 'Illegal Activities',
-                'terrorismnradicalization': 'Terrorism & Radicalization',
-                'terrorismandradicalization': 'Terrorism & Radicalization',
-                'gamblingnbetting': 'Gambling & Betting',
-                'gamblingandbetting': 'Gambling & Betting',
-                'alcoholntobacco': 'Alcohol & Tobacco',
-                'alcoholandtobacco': 'Alcohol & Tobacco',
-                'weaponsammunitionnexplosives': 'Weapons, Ammunition, & Explosives',
-                'weaponsammunitionandexplosives': 'Weapons, Ammunition, & Explosives',
-                'recreationaldrugs': 'Recreational Drugs',
-                'unapprovedpharmaceuticals': 'Unapproved Pharmaceuticals',
-                'malwarespywarenphishing': 'Malware, Spyware, & Phishing',
-                'malwarespywareandphishing': 'Malware, Spyware, & Phishing',
-                'copyrightntrademarkinfringement': 'Copyright & Trademark Infringement',
-                'copyrightandtrademarkinfringement': 'Copyright & Trademark Infringement',
-                'deceptivemisinformation': 'Deceptive Misinformation',
-                'clickbaitnlowqualityspamcontent': 'Clickbait & Low-Quality Spam Content',
-                'clickbaitandlowqualityspamcontent': 'Clickbait & Low-Quality Spam Content'
-            };
-
-            const heading = document.getElementById('page-heading');
-
-            // Strict checking validation loop
-            if (reasonMap[cleanReason]) {
-                const formattedReason = reasonMap[cleanReason];
-                heading.textContent = `You've been declined because of ${formattedReason}`;
-                heading.style.color = '#b30000'; 
-                heading.style.fontSize = '2.5rem'; 
-            } else {
-                // If it is completely missing from your dictionary mapping rules
-                heading.textContent = "Undefined Reason: Please make sure that the reason is correctly typed in or is in the list";
-                heading.style.color = '#721c24'; // Slightly deeper gray/red error tint
-                heading.style.fontSize = '1.8rem'; 
-                heading.style.maxWidth = '800px'; // Prevent long sentences stretching completely wide
-            }
-        }
-    </script>
 </body>
 </html>
